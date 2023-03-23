@@ -184,6 +184,85 @@ public class ConditionalStatements
 		}
 	}
 	
+	//WAP to read a number as input and find the given number is EVEN 
+	// GN / 2  -> Q      GN % N -> R   R==0
+	@Test
+	public void findEven_test()
+	{
+		findEven(22);
+		findEven(23);
+	}
+	public void findEven(int number) //Dev Code
+	{
+		System.out.println("User Given Number :" + number);
+		// reminder = (number % 2);
+		//boolean flag = (reminder==0);
+		//if(flag)
+		if((number%2)==0) 
+		{ //true
+			System.out.println("Given Number is EVEN");
+		}
+		else
+		{
+			System.out.println("Given Number is ODD");
+		}
+		
+	}
+	
+	
+
+	
+	//WAP to read a number as input and find the given number is ODD
+	@Test
+	public void findOdd_test()
+	{
+		findOdd(27);
+	}
+	public void findOdd(int number)
+	{
+		System.out.println("User Given Number : " + number);
+		int reminder = (number % 2);
+		boolean result = (reminder==0);
+		if(!(result))   // if not true
+		{
+			System.out.println("Given Number is ODD");
+		}
+		else
+		{
+			System.out.println("Given Number is EVEN");
+		}
+	}
+	
+	//WAP to give GREEN cap to EVEN rollNumber and RED cap to ODD rollNumber
+	
+	public boolean findEvenOdd(int number) //Dev Code  // Reusable functions
+	{
+		System.out.println("User Given Number :" + number);
+		boolean result = ((number % 2) == 0);
+		return result;
+	}
+	
+	public void distributeCaps(int stdNum)
+	{
+		boolean result = findEvenOdd(stdNum);
+		if(result)  // if true  -> stdnum is even
+		{
+			System.out.println("Give a GREEN cap to this student : " + stdNum);
+		}
+		else
+		{
+			System.out.println("Give a RED cap to this student :" + stdNum);
+		}
+	}
+	@Test
+	public void distributeCaps_test()
+	{
+		distributeCaps(24);
+		distributeCaps(55);
+	}
+	// if we have more number of students then we have to take all rollnumbers in a array | collection then put it in a for loop
+	
+	
 	
 	
 	
