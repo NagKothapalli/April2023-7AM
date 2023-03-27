@@ -60,10 +60,38 @@ public class LoopingStatements
 			System.out.println("Apply Red Color to Step #" + i);
 		}
 	}
+	@Test
+	public void findStudent() //Roll Num = 22
+	{
+		for(int i=1;i<=50;i++)
+		{
+			System.out.println("Searching Students :" + i);
+			if(i==22)
+			{
+				System.out.println("Found the Student");
+				break;
+			}
+		}
+		System.out.println("This is the line after for loop");
+	}
 	
-	
-	
-	
+	//WAP to demonstrate nested for loop	
+	//Building - 5 Floors - Each Floor 20 steps - 	
+	//Contractor  - he will count floors
+	//5 workers - he will count steps in a floor
+	@Test
+	public void applyColorToFiveFloors()
+	{
+		for(int floor=1;floor<=5;floor++)
+		{
+			System.out.println("Work is going on in Floor :" + floor);
+			//In ith floor apply color to 20 steps
+			for(int step=1;step<=20;step++)
+			{
+				System.out.println("Apply Color to Step :" + step);
+			}
+		}
+	}
 	
 	
 	
