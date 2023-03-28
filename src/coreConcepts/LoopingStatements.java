@@ -75,6 +75,21 @@ public class LoopingStatements
 		System.out.println("This is the line after for loop");
 	}
 	
+	@Test
+	public void findStudent_array() //Roll Num = 22
+	{
+		int[]  stdNumbers = {2,24,6,4,7,8,9,56,23,22,18,79};
+		for(int i=0;i<=stdNumbers.length;i++)
+		{
+			System.out.println("Searching Students :" + stdNumbers[i]);
+			if(stdNumbers[i]==22) // i = 0 1 2 3 4 5 6 ......
+			{
+				System.out.println("Found the Student");
+				break;
+			}
+		}
+		System.out.println("This is the line after for loop");
+	}
 	//WAP to demonstrate nested for loop	
 	//Building - 5 Floors - Each Floor 20 steps - 	
 	//Contractor  - he will count floors
