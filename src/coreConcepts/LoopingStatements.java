@@ -90,6 +90,50 @@ public class LoopingStatements
 		}
 		System.out.println("This is the line after for loop");
 	}
+	@Test
+	public void findTheStudent_test()
+	{
+		int[]  stdNumbers = {2,24,6,4,7,8,9,56,23,22,18,79};
+		boolean result = findTheStudent(stdNumbers,18);
+		if(result)
+		{
+			System.out.println("Given Std Num paid the fee");
+		}
+		else
+		{
+			System.out.println("Given Std did not paid the fee");
+		}
+	}
+	
+	public boolean findTheStudent(int[] allStudents,int stdNoToFind)
+	{
+		boolean flag = false;
+		for(int s=0;s<allStudents.length;s++)
+		{
+			System.out.println("Searching Students :" + allStudents[s]); // 0 1 2 3 4 5 ....
+			if(stdNoToFind == allStudents[s])
+			{
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
+	@Test
+	public void findDuplicate()
+	{
+		int[]  stdNumbers = {2,24,6,4,7,8,9,56,23,22,18,79,34,45,67,3,23,56,7,45,34,22,56,78,34,22};
+		int count = 0;
+		for(int i=0;i<stdNumbers.length;i++)
+		{
+			if(stdNumbers[i] == 22)
+			{
+				count++; // count = count+1;
+			}
+		}
+		System.out.println("Total Count :"+count);
+	}
+	
 	//WAP to demonstrate nested for loop	
 	//Building - 5 Floors - Each Floor 20 steps - 	
 	//Contractor  - he will count floors
