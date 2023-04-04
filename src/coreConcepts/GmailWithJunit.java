@@ -7,6 +7,24 @@ public class GmailWithJunit
 	//Junit : Unit Test Framework . Used to execute Java test methods.
 	//Unit Test Frameworks : Junit , TestNG
 	//TestMethod : A Java function added with "@Test" annotation
+//*******************Test Suites **********************
+	@Test
+	public void smokeSuite() //BVT : Build Validation Test
+	{
+		System.out.println("TestSuite : SMOKE");
+		composeAndSendAnEmail();
+		replyToAnEmail(); // we may have around 10|15 test cases as SMOKE
+	}
+	@Test
+	public void regressionSuite()
+	{
+		System.out.println("TestSuite : REGRESSION");
+		composeAndSendAnEmail();
+		replyToAnEmail(); // we may have around 100 test cases as Regression
+		forwardAnEmail();
+		deleteAnEmail();
+	}
+//**********************Test Cases *********************
 	@Test
 	public void composeAndSendAnEmail() //Raj
 	{
