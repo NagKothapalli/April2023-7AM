@@ -2,6 +2,23 @@ package inheritanceByObject;
 
 public class ReusableComponents
 {
+	public ReusableComponents() //default constructor
+	{
+		System.out.println("Open Google Chrome as Default Browser");
+		System.out.println("Delete the temp records in data base");
+	}
+	public ReusableComponents(String browser)
+	{
+		System.out.println("Open Browser of user choice :" + browser);
+		System.out.println("Delete the temp records in data base");
+	}
+	public ReusableComponents(String browser,int version)
+	{
+		System.out.println("Open Browser of user choice :" + browser + " with version as :" + version);
+		System.out.println("Delete the temp records in data base");
+		//we have to write the required logic to open browser
+	}
+	
 	//*****************Reusable Components***********************
 	public void launchApplication()
 	{

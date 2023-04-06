@@ -4,8 +4,13 @@ import org.junit.Test;
 //             child              parent
 public class TestCases //extends ReusableComponents ,Father,Mother,GrandFather
 {
+	//Execution flow : all class level variables will be loaded -> my constructor -> test methods
 	//Modifier  ClassName  objectName = new Constructor();
-	public ReusableComponents  rcObj = new ReusableComponents(); //default constructor
+	//public ReusableComponents  rcObj = new ReusableComponents(); //default constructor
+	//public ReusableComponents  rcObj = new ReusableComponents("firefox");
+	public ReusableComponents  rcObj = new ReusableComponents("firefox",99);
+	public int number = 22;
+	public String name = "Ram";
 	//public Father fatherObj = new Father();
 	//public Mother motherObj = new Mother();
 	//public GrandFther gfObj = new GrandFather();
