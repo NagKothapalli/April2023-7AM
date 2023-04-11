@@ -1,4 +1,4 @@
-package simpleInheritance;
+package rComponents;
 
 public class ReusableComponents
 {
@@ -8,17 +8,17 @@ public class ReusableComponents
 		System.out.println("Launch Application");
 		//here i will write total 10 lines of code to launch the application
 	}
-	void loginToApplication()
+	protected void loginToApplication()
 	{
 		System.out.println("Login to Application");
 		//here i will write total 20 lines of code to launch the application
 	}
-	void logoutFromApplication()
+	public void logoutFromApplication()
 	{
 		System.out.println("Logout From Application");
 		//here i will write total 10 lines of code to launch the application
 	}
-	void closeApplication()
+	public void closeApplication()
 	{
 		System.out.println("Close Application");
 		//here i will write total 20 lines of code to launch the application
@@ -31,11 +31,11 @@ public class ReusableComponents
 	{
 		System.out.println("Send Email");
 	}	
-	void open()
+	protected void open()
 	{
 		System.out.println("Open an Email");
 	}	
-	void reply()
+	protected void reply()
 	{
 		System.out.println("Reply to Email");
 	}

@@ -71,17 +71,17 @@ public class GmailWithJunit
 		closeApplication();
 	}
 	//*****************Reusable Components***********************
-	public void launchApplication()
+	private void launchApplication()
 	{
 		System.out.println("Launch Application");
 		//here i will write total 10 lines of code to launch the application
 	}
-	public void loginToApplication()
+	void loginToApplication()
 	{
 		System.out.println("Login to Application");
 		//here i will write total 20 lines of code to launch the application
 	}
-	public void logoutFromApplication()
+	protected void logoutFromApplication()
 	{
 		System.out.println("Logout From Application");
 		//here i will write total 10 lines of code to launch the application
