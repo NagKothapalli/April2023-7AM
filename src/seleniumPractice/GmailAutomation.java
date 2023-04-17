@@ -1,7 +1,9 @@
 package seleniumPractice;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import junit.framework.Assert;
@@ -11,6 +13,7 @@ public class GmailAutomation
 	//org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: session not created: This version of ChromeDriver only supports Chrome version 112
 	//Current browser version is 90.0.4430.212 with binary path C:\Program Files (x86)\Google\Chrome\Application\chrome.exe 
 	String expectedTitle = "Gmail";
+	//Selectors / Locators : ID , Name , ClassName , cssSelector , linkText , partialLinkText , TagName , xPath
 	@Test
 	public void launchApplication()
 	{
@@ -42,8 +45,14 @@ public class GmailAutomation
 		System.out.println("We came out of if condition");
 		//Assert myassert = new Assert();
 		Assert.assertTrue(result);
-		
-		
+		driver.findElement(By.name("identifier")).sendKeys("nag022@gmail.com");
+		driver.findElement(By.id("identifierId")).clear();
+		driver.findElement(By.id("identifierId")).sendKeys("ram@google.com");
+		/*
+		 * WebElement emailObj = driver.findElement(By.name("identifier"));
+		 * emailObj.click(); emailObj.sendKeys("dsfdsfsfsdfs"); emailObj.clear();
+		 * emailObj.sendKeys("nag022@gmail.com");
+		 */	
 	}
 	
 	public void loginToApplication()
