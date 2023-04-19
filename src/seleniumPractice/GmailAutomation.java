@@ -13,13 +13,22 @@ import junit.framework.Assert;
 
 public class GmailAutomation
 {
+	//Exceptions : 
 	//org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: session not created: This version of ChromeDriver only supports Chrome version 112
 	//Current browser version is 90.0.4430.212 with binary path C:\Program Files (x86)\Google\Chrome\Application\chrome.exe 
 	
 	//java.lang.NullPointerException
 	
+	//org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"*[name='identifier1']"}
+	
+	
+	
+	//Different Classes in Selenium WebDriver :
 	
 	//Selectors / Locators : ID , Name , ClassName , cssSelector , linkText , partialLinkText , TagName , xPath
+	//WebDriver : get(), getTitle(),getCurrentUrl(),getWindowHandle(),findElement(),findElements()
+	//By : id(),name(),className(),cssSelector(),linkText(),partialLinkText(),tagName(),xpath()
+	//WebElement : clear(),click(),sendKeys(),getText(),getAttribute()
 	
 	String expectedTitle = "Gmail";
 	WebDriver driver; //null
@@ -71,7 +80,7 @@ public class GmailAutomation
 	@Test
 	public void loginToApplication_index() //1234
 	{
-		driver.findElement(By.name("identifier")).sendKeys("9959775757");
+		driver.findElement(By.name("identifier1")).sendKeys("9959775757");
 		//driver.findElement(By.id("identifierId")).clear();
 		//driver.findElement(By.id("identifierId")).sendKeys("ram@google.com");
 		List<WebElement> elements = driver.findElements(By.className("VfPpkd-vQzf8d"));
@@ -82,7 +91,8 @@ public class GmailAutomation
 	@Test
 	public void loginToApplication() //1234
 	{
-		driver.findElement(By.name("identifier")).sendKeys("9959775757");
+		//driver.findElement(By.name("identifier")).sendKeys("9959775757");
+		driver.findElement(By.xpath("//input[@aria-label='Email or phone']")).sendKeys("nag022");
 		List<WebElement> elements = driver.findElements(By.className("VfPpkd-vQzf8d"));
 		for(int i=0;i<elements.size();i++)
 		{
@@ -98,6 +108,30 @@ public class GmailAutomation
 		}
 		
 	}
+	//xpath : xml path : we will form the xpath by taking node to node from the root node till the child
+	  //Full xpath / static xpath / absolute xpath
+	@Test
+	public void createAccount_fullXpath()
+	{
+		
+		///html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[2]/div/div/div[1]/div/button/span
+	   driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[2]/div/div/div[1]/div/button/span")).click();
+	}
+	//xpath - Relative xpath - Is just like SQL query
+	 //Employee table : select EmpSal  from Employees where EmpID=1234
+	 //Employee table : select EmpSal  from Employees where EmpFName = 'Ram'
+	 //Employee table : select EmpSal  from Employees where EmpFName = 'Ram' and EmpLName='K'
+	
+	//tagName[@attribute='value']
+	
+	//tagName[text()='value']
+	
+	@Test
+	public void createAccount_relativeXpath()
+	{
+		driver.findElement(By.xpath("//span[text()='Create account']")).click();
+	}
+	
 	@Test
 	public void createAccount() //1234
 	{		
@@ -119,7 +153,7 @@ public class GmailAutomation
 	@Test
 	public void forgotEmail() //1234
 	{
-		driver.findElement(By.tagName("button")).click();
+		//driver.findElement(By.tagName("button")).click();
 		/*
 		 * List<WebElement> elements = driver.findElements(By.tagName("button"));
 		 * for(int i=0;i<elements.size();i++) { WebElement element = elements.get(i); //
@@ -128,7 +162,9 @@ public class GmailAutomation
 		 * if(text.toUpperCase().equals("FORGOT EMAIL?")) { element.click();
 		 * System.out.println("Came inside if condition at 95 line"); break; } }
 		 */
-		
+		driver.findElement(By.xpath("//button[@jsname='Cuz2Ue']")).click();
+		//button[@type='button']
+		//button[text()='Forgot email?']
 	}
 	
 	@Test
@@ -143,7 +179,8 @@ public class GmailAutomation
 		 * System.out.println("Came inside if condition at 95 line"); break; } }
 		 */
 		//driver.findElement(By.linkText("Learn more")).click();
-		driver.findElement(By.partialLinkText("Learn")).click();
+		//driver.findElement(By.partialLinkText("Learn")).click();
+		driver.findElement(By.xpath("//a[@jsname='JFyozc']")).click();
 	}
 
 	
