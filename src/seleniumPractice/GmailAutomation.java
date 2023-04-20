@@ -124,7 +124,39 @@ public class GmailAutomation
 	
 	//tagName[@attribute='value']
 	
+	//tagName[@attribute1='value' and @attribute2='value']    -- //4th[@fn='ram' and @ln='K']
+	
 	//tagName[text()='value']
+	
+	//tagName[text()='value' and @attribute='value']
+	
+	
+		//*[@attribute='value']
+	
+		//*[@attribute1='value' and @attribute2='value']    -- //4th[@fn='ram' and @ln='K']
+		
+		//*[text()='value']
+		
+		//*[text()='value' and @attribute='value']
+	
+	//tagName[contains(@attribute,'partial value')]
+	
+	//tagName[contains(@attribute1,'partial value') and @attribute2='value']    -- //4th[@fn='ram' and @ln='K']
+	
+	//tagName[contains(text(),'value')]
+	
+	//tagName[contains(text(),'value') and @attribute='value']
+	
+	    //*[contains(@attribute,'partial value')]
+	
+		//*[contains(@attribute1,'partial value') and @attribute2='value']    -- //4th[@fn='ram' and @ln='K']
+		
+		//*[contains(text(),'value')]
+		
+		//*[contains(text(),'value') and @attribute='value']
+	
+	//*[@attribute1='value' or @attribute2='value']    -- //4th[@fn='ram' or @ln='K']
+	//tagName[@attribute1='value' or @attribute2='value']    -- //4th[@fn='ram' or @ln='K']
 	
 	@Test
 	public void createAccount_relativeXpath()
