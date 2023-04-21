@@ -3,8 +3,10 @@ package seleniumPractice;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class ApsrtcAutomation
 {
@@ -33,6 +35,35 @@ public class ApsrtcAutomation
 	    //driver.findElement(By.xpath("//input[contains(@title,'Enter bording place name or city')]")).sendKeys("HYDERABAD");
 	    driver.findElement(By.xpath("//*[@id='fromPlaceName']")).sendKeys("HYDERABAD");
 	}
+	//org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <input type="button" name="searchBtn" id="searchBtn"
+	@Test
+	public void bookBusTicket() throws InterruptedException
+	{
+		driver.findElement(By.xpath("//*[@id='fromPlaceName']")).sendKeys("HYDERABAD");
+		Thread.sleep(1000);
+		Actions actions = new Actions(driver);
+		actions.sendKeys(Keys.ENTER).build().perform();
+		driver.findElement(By.xpath("//input[@value='Check Availability']")).click();
+		driver.switchTo().alert().accept();
+		driver.findElement(By.xpath("//input[@name='destination']")).sendKeys("GUNTUR");
+		Thread.sleep(1000);
+		actions.sendKeys(Keys.ENTER).build().perform();
+		driver.findElement(By.xpath("//input[@name='txtJourneyDate']")).click();
+		driver.findElement(By.xpath("//a[text()='28']")).click();
+		driver.findElement(By.xpath("//input[@value='Check Availability']")).click();
+		Thread.sleep(8000);
+		actions.sendKeys(Keys.ENTER).build().perform();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Test
 	public void navigateToAllTabs() throws InterruptedException
 	{
