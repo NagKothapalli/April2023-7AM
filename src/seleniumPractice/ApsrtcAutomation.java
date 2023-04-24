@@ -1,5 +1,7 @@
 package seleniumPractice;
 
+import java.time.Duration;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -7,6 +9,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ApsrtcAutomation
 {
@@ -16,6 +20,7 @@ public class ApsrtcAutomation
 	{
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\JarFiles\\chromedriver-win32-90\\chromedriver.exe");
 		driver = new ChromeDriver(); //1234 //it will open an empty chrome browser
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 	
 	@Before // method tagged with before annotation will be executed before every test method
@@ -51,8 +56,34 @@ public class ApsrtcAutomation
 		driver.findElement(By.xpath("//input[@name='txtJourneyDate']")).click();
 		driver.findElement(By.xpath("//a[text()='28']")).click();
 		driver.findElement(By.xpath("//input[@value='Check Availability']")).click();
-		Thread.sleep(8000);
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//div[@id='returnDiscountModal-content']/span")).click();
+		//actions.sendKeys(Keys.ENTER).build().perform();
+	}
+	@Test
+	public void bookBusTicketWithReturnJourneyDiscount()
+	{
+		//Step1: Enter from City wait one sec and click enter button
+		driver.findElement(By.xpath("//*[@id='fromPlaceName']")).sendKeys("HYDERABAD");
+		Actions actions = new Actions(driver);
+		actions.pause(Duration.ofSeconds(1)).build().perform();
 		actions.sendKeys(Keys.ENTER).build().perform();
+		//Step2: Enter to City wait one sec and click enter button
+		driver.findElement(By.xpath("//input[@name='destination']")).sendKeys("GUNTUR");
+		actions.pause(Duration.ofSeconds(1)).build().perform();
+		actions.sendKeys(Keys.ENTER).build().perform();
+		//Step3:Open Calendar
+		driver.findElement(By.xpath("//input[@name='txtJourneyDate']")).click();
+		//Step4:Select Journey date and click search button
+		driver.findElement(By.xpath("//a[text()='28']")).click();
+		driver.findElement(By.xpath("//input[@value='Check Availability']")).click();
+		//Step5: click Apply Now in the return journey modal popup
+		//Synchronization
+		//actions.pause(Duration.ofSeconds(10)).build().perform(); // fixed / static wait
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); // dynamic
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='returnDiscountModal-content']//input[@title='Apply Now']"))).click();
+		//driver.findElement(By.xpath("//div[@id='returnDiscountModal-content']//input[@title='Apply Now']")).click();	
 	}
 	
 	
