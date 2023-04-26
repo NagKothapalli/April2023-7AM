@@ -20,19 +20,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ApsrtcAutomation
 {
 	WebDriver driver; //null
-	
+	ReadTestData readTestData;
+	WebDriverUtilities driverUtils;
 	public ApsrtcAutomation()
 	{
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\JarFiles\\chromedriver-win32-90\\chromedriver.exe");
 		driver = new ChromeDriver(); //1234 //it will open an empty chrome browser
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		readTestData = new ReadTestData("Stage");
+		driverUtils = new WebDriverUtilities(driver);
 	}
 	
-	//@Before // method tagged with before annotation will be executed before every test method
+	@Before // method tagged with before annotation will be executed before every test method
 	public void launchApplication()
 	{
 		System.out.println("TestCase : Launch Application");
-		driver.get("https://www.apsrtconline.in/"); //1234
+		//driver.get("https://www.apsrtconline.in/"); //1234
+		driver.get(readTestData.getData("URL"));
 	}
 	//Exceptions : checked / unchecked 
 	
@@ -51,6 +55,7 @@ public class ApsrtcAutomation
 		System.out.println(prop.getProperty("UserName"));
 	}
 	
+
 	@Test
 	public void bookBusTicket_relativexpath()
 	{
@@ -112,20 +117,20 @@ public class ApsrtcAutomation
 	public void bookBusTicketWithRJD_Utility()
 	{
 		//Step1: Enter from City wait one sec and click enter button
-		enterText("//*[@id='fromPlaceName']","HYDERABAD");
-		fixedWait(1);
-		clickEnter();		
+		driverUtils.enterText("//*[@id='fromPlaceName']","HYDERABAD");//Hard coded data
+		driverUtils.fixedWait(1);
+		driverUtils.clickEnter();		
 		//Step2: Enter to City wait one sec and click enter button
-		enterText("//input[@name='destination']","GUNTUR");
-		fixedWait(1);
-		clickEnter();		
+		driverUtils.enterText("//input[@name='destination']","GUNTUR");//Hard coded data
+		driverUtils.fixedWait(1);
+		driverUtils.clickEnter();		
 		//Step3:Open Calendar
-		clickElement("//input[@name='txtJourneyDate']");
+		driverUtils.clickElement("//input[@name='txtJourneyDate']");
 		//Step4:Select Journey date and click search button
-		clickElement("//a[text()='28']");
-		clickElement("//input[@value='Check Availability']");
+		driverUtils.clickElement("//a[text()='28']");//Hard coded data
+		driverUtils.clickElement("//input[@value='Check Availability']");
 		//Step5: click Apply Now in the return journey modal popup
-		clickElement("//div[@id='returnDiscountModal-content']//input[@title='Apply Now']");
+		driverUtils.clickElement("//div[@id='returnDiscountModal-content']//input[@title='Apply Now']");
 	}
 	
 	//Framework - POM - Page Object Model
@@ -141,50 +146,32 @@ public class ApsrtcAutomation
 	public void bookBusTicketWithRJD_Utility_xpaths()
 	{
 		//Step1: Enter from City wait one sec and click enter button
-		enterText(fromCityXpath,"HYDERABAD"); //Hard coded data
-		fixedWait(1);
-		clickEnter();		
+		String fCity = readTestData.getData("FromCity");
+		driverUtils.enterText(fromCityXpath,fCity); 
+		driverUtils.fixedWait(1);
+		driverUtils.clickEnter();		
 		//Step2: Enter to City wait one sec and click enter button
-		enterText(toCityXpath,"GUNTUR");
-		fixedWait(1);
-		clickEnter();		
+		driverUtils.enterText(toCityXpath,readTestData.getData("ToCity"));
+		driverUtils.fixedWait(1);
+		driverUtils.clickEnter();		
 		//Step3:Open Calendar
-		clickElement(openCalendarXpath);
+		driverUtils.clickElement(openCalendarXpath);
 		//Step4:Select Journey date and click search button
-		clickElement(selectDateXpath);
-		clickElement(searchBtnXpath);
+		//clickElement(selectDateXpath);
+		selectJourneyDate(readTestData.getData("JDate"));
+		driverUtils.clickElement(searchBtnXpath);
 		//Step5: click Apply Now in the return journey modal popup
-		clickElement(applyNowXpath);
+		driverUtils.clickElement(applyNowXpath);
+	}
+	//Dynamic xpath
+	public void selectJourneyDate(String jDate)
+	{
+		                              //a[text()='28']
+		// Today is my 10 th birthday - "Today is my" +year+  " th birthday"
+		driver.findElement(By.xpath("//a[text()='"+jDate+"']")).click();
 	}
 	
-	//Handle button , Handle Textbox , Handle dropdown
-	//generic | utility function
-	public void clickElement(String myxpath)
-	{
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(myxpath))).click();
-	}
-	public void enterText(String myxpath,String text)
-	{
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(myxpath))).sendKeys(text);;
-	}	
-	public void fixedWait(int timeInSec)
-	{
-		Actions actions = new Actions(driver);
-		actions.pause(Duration.ofSeconds(timeInSec)).build().perform();
-	}	
-	public void clickEnter()
-	{
-		Actions actions = new Actions(driver);
-		actions.sendKeys(Keys.ENTER).build().perform();
-	}
-	public void clickTab()
-	{
-		Actions actions = new Actions(driver);
-		actions.sendKeys(Keys.TAB).build().perform();
-	}
-
+	
 	
 	@Test
 	public void keyboardAndMouseActions()
