@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -142,6 +144,10 @@ public class ApsrtcAutomation
 	String searchBtnXpath = "//input[@value='Check Availability']";
 	String applyNowXpath = "//div[@id='returnDiscountModal-content']//input[@title='Apply Now']";
 	
+	String timeTableXpath = "//a[@title='TimeTable / Track']";
+	String allServicesXpath = "//a[text()='All services Time Table & Tracking']";
+	String homeXpath = "//a[@title='Home']";
+	
 	@Test
 	public void bookBusTicketWithRJD_Utility_xpaths()
 	{
@@ -181,8 +187,28 @@ public class ApsrtcAutomation
 		actions.moveToElement(fromPlace).click().sendKeys("HYDERABAD").pause(Duration.ofSeconds(1)).sendKeys(Keys.ENTER).build().perform();
 		actions.moveToElement(fromPlace).doubleClick().contextClick().build().perform();
 	}
-	
-	
+	//org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+	@Test
+	public void workWithMultipleWindows()
+	{
+		driverUtils.clickElement(timeTableXpath);
+		driverUtils.clickElement(allServicesXpath);
+		Set<String> allWindows = driver.getWindowHandles();
+		ArrayList<String> windows = new ArrayList<String>(allWindows);
+		int length = windows.size();
+		for(int i=0;i<length;i++)
+		{
+			System.out.println(windows.get(i));
+		}
+		System.out.println("Title of the first window : "+driver.getTitle());
+		driver.switchTo().window(windows.get(1)); //0 - first window  1 - second window
+		System.out.println("Title of the second window : "+driver.getTitle());
+		driver.close(); // it will close the current active window
+		//driver.quit(); //it will close all windows opened by this driver object , driver exe will be killed in taskmanager
+		driver.switchTo().window(windows.get(0));
+		driverUtils.clickElement(homeXpath);
+		driver.quit();
+	}
 	
 	
 	
